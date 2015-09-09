@@ -1,0 +1,20 @@
+<div class="container" >
+  <div class="row">
+    <h3> Write the word and you will get 10 sentences with it! </h3>
+    <form class="form-inline">
+      <div class="form-group">
+        <%= form_for root_path do |f| %>
+          <%= f.text_field :word, placeholder: "Your word", class: "form-control" %>
+          <%= f.submit value: "Send request", class: "btn btn-info" %>
+        <% end %>
+      </div>
+    </form>
+  </div>
+  <div class="sentences">
+    <% if @wordnik.present? %>
+      <% @wordnik["examples"].each_with_index do |a, index| %>
+        <p><%= "#{index + 1}. " + "#{a['text']}" %></p>
+      <% end %>
+    <% end %>
+  </div>
+</div>
